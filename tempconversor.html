@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Conversor de Temperatura</title>
+    <link rel="stylesheet" href="css.css">
+ 
+</head>
+
+<body>
+    <script src="desafio.js"></script>
+<header>
+    <h1 id="h1-principal">Programinhas "Ajuda aí"</h1>
+    <button type="button" id="btIncial" onclick="openApp('index.html')">Página inicial</button>
+    <h2 id="h2-principal">Conversor de Temperatura</h2>
+</header>
+
+    <form>
+        <label for="valorTemperatura">Temperatura:</label>
+        <input type="number" id="valorTemperatura">
+
+        <label for="escalaAtual">De:</label>
+        <select id="escalaAtual">
+            <option value="Cº">Celsius</option>
+            <option value="Fº">Fahrenheit</option>
+            <option value="K">Kelvin</option>
+        </select>
+
+        <label for="escalaConvertida">Para:</label>
+        <select id="escalaConvertida">
+            <option value="Cº">Celsius</option>
+            <option value="Fº">Fahrenheit</option>
+            <option value="K">Kelvin</option>
+        </select>
+
+        <button type="button" id="btConverteTemp">Converter</button>
+    </form>
+
+    <div id="resultadoTemp"></div>
+
+    <script>
+        document.querySelector('#btConverteTemp').addEventListener('click', function (){
+            const temperaturaAtual = parseFloat(document.querySelector('#valorTemperatura').value);
+            const escalaAtual = document.querySelector('#escalaAtual').value;
+            const escalaConvertida = document.querySelector('#escalaConvertida').value;
+
+            const resultado = converteTemperatura(temperaturaAtual, escalaAtual, escalaConvertida);
+
+            if (resultado.msgErro === 'Ok') {
+                document.querySelector('#resultadoTemp').textContent = `Temperatura convertida: ${resultado.temperaturaConvertida} ${escalaConvertida}`;
+            } else {
+                document.querySelector('#resultadoTemp').textContent = resultado.msgErro;
+            }
+        });
+        function openApp(url) {
+            window.location.href = url;
+        }
+    </script>
+    <footer>
+        <p>Pagina criada por Claudiney Clayton Estudante do Curso de Devenvolvedor Fron-end no <b>SENAI-SP - Conde José Vicente de Azevedo pela
+            Ford-Enter</b>&reg;</p>
+    
+    </footer>
+</body>
+</html>
